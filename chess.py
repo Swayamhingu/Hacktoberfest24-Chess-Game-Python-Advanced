@@ -6,7 +6,9 @@ class ChessBoard:
 
     # Creates the 8x8 chessboard and places all pieces
     def create_board(self): 
-        board = [[None for _ in range(8)] for _ in range(8)]  # Create 8x8 grid
+
+        board = [["." for _ in range(8)] for _ in range(8)]  # Create 8x8 grid
+
         # Place white pawns at row 1 and black pawns at row 6
         for i in range(8):
             board[1][i] = Pawn('w', 'P')  # White pawn
@@ -34,8 +36,12 @@ class ChessBoard:
 
     # Function to print the board in a human-readable format
     def print_board(self):
-        for row in self.board:
-            print(' '.join([str(piece) if piece else '.' for piece in row]))  # Display pieces or '.' for empty squares
+        i=8
+        for row in reversed(self.board):
+            print(f'  {i} ', ' '.join([str(piece) if piece else '.' for piece in row]))  # Display pieces or '.' for empty squares
+            i-=1
+        
+        print("     A B C D E F G H")  # Display pieces or '.' for empty squares
 
     # Placeholder function for moving pieces (to be implemented)
     def move_piece(self, start, end):
@@ -228,13 +234,13 @@ class Game:
 
             # Process the inputs
             try:
-                start_x, start_y = map(int, start_input.split(','))
-                end_x, end_y = map(int, end_input.split(','))
+                start_x, start_y = map(int, [ord(start_input[0]) - ord('A') + 1, start_input[1]])
+                end_x, end_y = map(int, [ord(end_input[0]) - ord('A') + 1, end_input[1]])
 
-                print(f"Move requested: Piece at ({start_x}, {start_y}) to ({end_x}, {end_y}) as {piece_input}")
+                print(f"\nMove requested: Piece at {start_input} to {end_input} as {piece_input}\n")
 
             except ValueError:
-                print("Invalid input format. Please ensure you're using (x,y) format.")
+                print("\nInvalid input format. Please ensure you're using (x,y) format.\n")
                 continue
 
             # Switch the turn after capturing the move
