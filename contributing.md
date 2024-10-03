@@ -6,7 +6,6 @@ First of all, we want to thank you for your contribution in this project 😊
 
 Before contributing, do make sure you read the important section.
 
-We eagerly anticipate your input. 👍
 
 ### Beginning the procedure of contributing? 🤔
 
